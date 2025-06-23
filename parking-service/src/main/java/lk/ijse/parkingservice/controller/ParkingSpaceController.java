@@ -1,5 +1,6 @@
 package lk.ijse.parkingservice.controller;
 
+import jakarta.validation.Valid;
 import lk.ijse.parkingservice.dto.ParkingSpaceDTO;
 import lk.ijse.parkingservice.service.ParkingSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class ParkingSpaceController {
     private ParkingSpaceService parkingSpaceService;
 
     @PostMapping
-    public ResponseEntity<ParkingSpaceDTO> createParkingSpace(@RequestBody ParkingSpaceDTO parkingSpaceDTO) {
+    public ResponseEntity<ParkingSpaceDTO> createParkingSpace(@Valid @RequestBody ParkingSpaceDTO parkingSpaceDTO) {
         return new ResponseEntity<>(parkingSpaceService.createParkingSpace(parkingSpaceDTO), HttpStatus.CREATED);
     }
 

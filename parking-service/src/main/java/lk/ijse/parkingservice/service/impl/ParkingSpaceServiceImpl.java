@@ -5,6 +5,7 @@ import lk.ijse.parkingservice.entity.ParkingSpace;
 import lk.ijse.parkingservice.repo.ParkingSpaceRepo;
 import lk.ijse.parkingservice.repo.UserRepo;
 import lk.ijse.parkingservice.service.ParkingSpaceService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,14 +24,23 @@ public class ParkingSpaceServiceImpl implements ParkingSpaceService {
     @Autowired
     private UserRepo userRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
     public ParkingSpaceDTO createParkingSpace(ParkingSpaceDTO parkingSpaceDTO) {
-        if (parkingSpaceRepository.existsByLocation(parkingSpaceDTO.getLocation()) ||
-                parkingSpaceRepository.existsByLocationCode(parkingSpaceDTO.getLocationCode())) {
-            throw new RuntimeException("Location or Location Code already exists");
-        }
-        if (!userRepository.existsByEmail(parkingSpaceDTO.getEmail())) {
+        if (parkingSpaceDTO.getEmail() != null && !userRepository.existsByEmail(parkingSpaceDTO.getEmail())) {
             throw new RuntimeException("User with email " + parkingSpaceDTO.getEmail() + " not found");
+        }
+        try {
+            if (parkingSpaceRepository.existsByLocation(parkingSpaceDTO.getLocation())) {
+                throw new RuntimeException("Location already exists");
+            }
+            if (parkingSpaceRepository.existsByLocationCode(parkingSpaceDTO.getLocationCode())) {
+                throw new RuntimeException("Location Code already exists");
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Validation failed: " + e.getMessage());
         }
         ParkingSpace parkingSpace = mapToEntity(parkingSpaceDTO);
         parkingSpace = parkingSpaceRepository.save(parkingSpace);
@@ -131,29 +141,11 @@ public class ParkingSpaceServiceImpl implements ParkingSpaceService {
     }
 
     private ParkingSpaceDTO mapToDTO(ParkingSpace parkingSpace) {
-        ParkingSpaceDTO dto = new ParkingSpaceDTO();
-        dto.setParkingSpaceId(parkingSpace.getParkingSpaceId());
-        dto.setLocation(parkingSpace.getLocation());
-        dto.setLocationCode(parkingSpace.getLocationCode());
-        dto.setCity(parkingSpace.getCity());
-        dto.setAvailable(parkingSpace.isAvailable());
-        dto.setEmail(parkingSpace.getEmail());
-        dto.setPayAmount(parkingSpace.getPayAmount());
-        dto.setParkingTime(parkingSpace.getParkingTime());
-        return dto;
+        return modelMapper.map(parkingSpace, ParkingSpaceDTO.class);
     }
 
     private ParkingSpace mapToEntity(ParkingSpaceDTO dto) {
-        ParkingSpace parkingSpace = new ParkingSpace();
-        parkingSpace.setParkingSpaceId(dto.getParkingSpaceId());
-        parkingSpace.setLocation(dto.getLocation());
-        parkingSpace.setLocationCode(dto.getLocationCode());
-        parkingSpace.setCity(dto.getCity());
-        parkingSpace.setAvailable(dto.isAvailable());
-        parkingSpace.setEmail(dto.getEmail());
-        parkingSpace.setPayAmount(dto.getPayAmount());
-        parkingSpace.setParkingTime(dto.getParkingTime());
-        return parkingSpace;
+        return modelMapper.map(dto, ParkingSpace.class);
     }
 
     private void updateEntity(ParkingSpace parkingSpace, ParkingSpaceDTO dto) {
