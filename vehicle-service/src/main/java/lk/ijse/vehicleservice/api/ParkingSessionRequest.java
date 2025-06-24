@@ -1,4 +1,4 @@
-package lk.ijse.vehicleservice.controller;
+package lk.ijse.vehicleservice.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

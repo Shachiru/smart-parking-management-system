@@ -1,4 +1,4 @@
-package lk.ijse.vehicleservice.controller;
+package lk.ijse.vehicleservice.api;
 
 import lk.ijse.vehicleservice.dto.ParkingSessionDTO;
 import lk.ijse.vehicleservice.dto.VehicleDTO;

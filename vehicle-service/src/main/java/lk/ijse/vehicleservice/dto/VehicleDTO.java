@@ -14,5 +14,7 @@ public class VehicleDTO {
     private UUID vehicleId;
     private String licensePlate;
     private String vehicleType;
-    private UUID ownerId;
+    private UUID userId;
+    private LocalDateTime entryTime;
+    private LocalDateTime exitTime;
 }

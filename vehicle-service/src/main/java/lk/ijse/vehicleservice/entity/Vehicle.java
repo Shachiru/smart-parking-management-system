@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -24,6 +25,11 @@ public class Vehicle {
     private String vehicleType;
 
     @Column(nullable = false)
-    private UUID ownerId;
+    private UUID userId;
 
+    @Column
+    private LocalDateTime entryTime;
+
+    @Column
+    private LocalDateTime exitTime;
 }
