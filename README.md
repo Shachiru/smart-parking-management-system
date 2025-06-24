@@ -1,1 +1,3 @@
-![eureka-server](https://github.com/user-attachments/assets/2ddb09a1-6cd8-4d6f-a256-2664a770222e)
+# Smart Parking Management System
+- [Postman Collection](./SPMS_Collection.postman_collection.json)
+![Eureka-Dashboard](./screenshot/eureka-server.png)
