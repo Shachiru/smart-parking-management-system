@@ -1,0 +1,767 @@
+{
+	"info": {
+		"_postman_id": "c548dc30-0fed-4294-afa5-6c606bd48e87",
+		"name": "SPMS_Collection",
+		"description": "API tests for Smart Parking Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37710211"
+	},
+	"item": [
+		{
+			"name": "Parking Space Service",
+			"item": [
+				{
+					"name": "Create Parking Space",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Main Street\",\r\n  \"locationCode\": 101,\r\n  \"city\": \"Colombo\",\r\n  \"available\": true,\r\n  \"email\": \"john@example.com\",\r\n  \"payAmount\": 100,\r\n  \"parkingTime\": \"2024-06-10T10:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/parking-service/api/v1/parking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"parking-service",
+								"api",
+								"v1",
+								"parking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Parking Space",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Downtown Lot B\",\r\n  \"locationCode\": 102,\r\n  \"city\": \"Colombo\",\r\n  \"available\": true,\r\n  \"email\": \"john@example.com\",\r\n  \"payAmount\": 150,\r\n  \"parkingTime\": \"2024-06-10T10:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/parking-service/api/v1/parking/b642720e-a073-4a83-8fd0-83fa719c9b36",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"parking-service",
+								"api",
+								"v1",
+								"parking",
+								"b642720e-a073-4a83-8fd0-83fa719c9b36"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Parking Space by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/parking-service/api/v1/parking/b642720e-a073-4a83-8fd0-83fa719c9b36",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"parking-service",
+								"api",
+								"v1",
+								"parking",
+								"b642720e-a073-4a83-8fd0-83fa719c9b36"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Parking Spaces",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/parking-service/api/v1/parking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"parking-service",
+								"api",
+								"v1",
+								"parking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Parking Space",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/parking-service/api/v1/parking/{{parkingSpaceId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"parking-service",
+								"api",
+								"v1",
+								"parking",
+								"{{parkingSpaceId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reserve Parking Space",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/parking-service/api/v1/parking/fcc09de6-cd21-446c-99a9-3d13c2da7050/reserve?email=john@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"parking-service",
+								"api",
+								"v1",
+								"parking",
+								"fcc09de6-cd21-446c-99a9-3d13c2da7050",
+								"reserve"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "john@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Release Parking Space",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/parking-service/api/v1/parking/fcc09de6-cd21-446c-99a9-3d13c2da7050/release?email=john@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"parking-service",
+								"api",
+								"v1",
+								"parking",
+								"fcc09de6-cd21-446c-99a9-3d13c2da7050",
+								"release"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "john@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Parking Spaces by Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/parking-service/api/v1/parking/location?location=Main Street",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"parking-service",
+								"api",
+								"v1",
+								"parking",
+								"location"
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": "Main Street"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Parking Spaces by Availability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/parking-service/api/v1/parking/availability?available=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"parking-service",
+								"api",
+								"v1",
+								"parking",
+								"availability"
+							],
+							"query": [
+								{
+									"key": "available",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reserve Parking Space - Already Reserved (Error)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/parking-service/api/v1/parking/fcc09de6-cd21-446c-99a9-3d13c2da7050/reserve?email=john@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"parking-service",
+								"api",
+								"v1",
+								"parking",
+								"fcc09de6-cd21-446c-99a9-3d13c2da7050",
+								"reserve"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "john@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vehicle Service",
+			"item": [
+				{
+					"name": "Register a Vehicle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"licensePlate\": \"ABC1234\",\r\n  \"vehicleType\": \"Car\",\r\n  \"userId\": \"28782eea-7da3-4568-be34-456694017d53\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/vehicle-service/api/v1/vehicles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"vehicle-service",
+								"api",
+								"v1",
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Vehicle",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"licensePlate\": \"XYZ5678\",\r\n  \"vehicleType\": \"SUV\",\r\n  \"userId\": \"0a9ef3c1-7237-45fc-8f10-66ecb2ea6d36\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/vehicle-service/api/v1/vehicles/7a68857b-c99b-403d-bb55-6ced56216dea",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"vehicle-service",
+								"api",
+								"v1",
+								"vehicles",
+								"7a68857b-c99b-403d-bb55-6ced56216dea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Vehicle by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/vehicle-service/api/v1/vehicles/7a68857b-c99b-403d-bb55-6ced56216dea",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"vehicle-service",
+								"api",
+								"v1",
+								"vehicles",
+								"7a68857b-c99b-403d-bb55-6ced56216dea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Vehicles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/vehicle-service/api/v1/vehicles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"vehicle-service",
+								"api",
+								"v1",
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Vehicle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/vehicle-service/api/v1/vehicles/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"vehicle-service",
+								"api",
+								"v1",
+								"vehicles",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start a Parking Session",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vehicleId\": \"9e06abae-ad48-4b96-8c3b-5d630290173d\",\r\n  \"parkingSpaceId\": \"14879386-cefa-4aa5-81f4-af2304d411e5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/vehicle-service/api/v1/vehicles/parking-sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"vehicle-service",
+								"api",
+								"v1",
+								"vehicles",
+								"parking-sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "End a Parking Session",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/vehicle-service/api/v1/vehicles/parking-sessions/810c3804-a119-4531-91fb-af9670ffe0c3/end",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"vehicle-service",
+								"api",
+								"v1",
+								"vehicles",
+								"parking-sessions",
+								"810c3804-a119-4531-91fb-af9670ffe0c3",
+								"end"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Service",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"password123\",\r\n  \"role\": \"OWNER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/user-service/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"user-service",
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"jane@example.com\",\r\n  \"password\": \"newpassword123\",\r\n  \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/user-service/api/v1/users/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"user-service",
+								"api",
+								"v1",
+								"users",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/user-service/api/v1/users/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"user-service",
+								"api",
+								"v1",
+								"users",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/user-service/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"user-service",
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/user-service/api/v1/users/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"user-service",
+								"api",
+								"v1",
+								"users",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"john@example.com\",\r\n    \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/user-service/api/v1/users/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"user-service",
+								"api",
+								"v1",
+								"users",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment Service",
+			"item": [
+				{
+					"name": "Start Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userId",
+									"value": "28782eea-7da3-4568-be34-456694017d53",
+									"type": "text"
+								},
+								{
+									"key": "parkingSpaceId",
+									"value": "14879386-cefa-4aa5-81f4-af2304d411e5",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "100.0",
+									"type": "text"
+								},
+								{
+									"key": "paymentMethod",
+									"value": "VISA-1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8084/payment-service/api/v1/payment/initiate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"payment-service",
+								"api",
+								"v1",
+								"payment",
+								"initiate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Process Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "transactionStatus",
+									"value": "SUCCESS",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8084/payment-service/api/v1/payment/simulate/19a8ebde-e2b3-4043-8f77-6aa55592fb83",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"payment-service",
+								"api",
+								"v1",
+								"payment",
+								"simulate",
+								"19a8ebde-e2b3-4043-8f77-6aa55592fb83"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Receipt",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/payment-service/api/v1/payment/generate-receipt/19a8ebde-e2b3-4043-8f77-6aa55592fb83",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"payment-service",
+								"api",
+								"v1",
+								"payment",
+								"generate-receipt",
+								"19a8ebde-e2b3-4043-8f77-6aa55592fb83"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
